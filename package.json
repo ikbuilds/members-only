@@ -4,7 +4,7 @@
     "main": "app.js",
     "scripts": {
         "dev": "concurrently --names \"server,tailwind,browser\" \"npm run dev:server\" \"npm run dev:tailwind\" \"npm run dev:browser\"",
-        "dev:server": "nodemon app.js",
+        "dev:server": "nodemon server.js",
         "dev:tailwind": "tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
         "dev:browser": "browser-sync start --proxy http://localhost:3000 --port --files \"public/**/*\" --no-open"
     },

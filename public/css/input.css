@@ -1,0 +1,117 @@
+@font-face {
+  font-family: "Manrope Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(/fonts/manrope_variabe.woff2) format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/inter_variable.woff2) format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Material Symbols Outlined Variable";
+  font-style: normal;
+  font-display: block;
+  font-weight: 100 700;
+  src: url(/fonts/material-symbols-outlined_variable.woff2)
+    format("woff2-variations");
+}
+
+@import "tailwindcss";
+
+@theme {
+  /* Primary */
+  --color-primary: #7cb7ff;
+  --color-on-primary: #08111d;
+
+  --color-primary-container: #1a2b44;
+  --color-on-primary-container: #d6e6ff;
+
+  /* Secondary */
+  --color-secondary: #26384d;
+  --color-on-secondary: #d8e4f2;
+
+  --color-secondary-container: #344a63;
+  --color-on-secondary-container: #e3edf9;
+
+  /* Surface */
+  --color-surface: #0f1724;
+  --color-on-surface: #e5edf7;
+
+  --color-surface-variant: #162131;
+  --color-on-surface-variant: #b6c4d6;
+
+  --color-surface-container: #162131;
+  --color-surface-container-high: #1d2a3d;
+  --color-surface-container-highest: #243247;
+
+  /* Outline */
+  --color-outline: #304256;
+  --color-outline-variant: #223044;
+
+  /* Error */
+  --color-error: #ff8b8b;
+  --color-on-error: #1a0b0b;
+
+  --color-error-container: #3a1c1c;
+  --color-on-error-container: #ffd6d6;
+
+  /* Fonts */
+  --font-heading: "Manrope Variable", sans-serif;
+  --font-body: "Inter Variable", sans-serif;
+}
+
+@keyframes fade-up-blur {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@layer base {
+  dialog {
+    color: inherit;
+    background: transparent;
+    margin: auto;
+    padding: 0;
+    border: none;
+  }
+
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+}
+
+@layer utilities {
+  .animate-fade-up-blur {
+    animation: fade-up-blur 0.9s ease-out both;
+  }
+
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined Variable";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+}
