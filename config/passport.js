@@ -1,5 +1,7 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import prisma from "./prisma.js";
+import bcrypt from "bcryptjs";
 
 const passportConfig = {
   usernameField: "identifier",
@@ -19,7 +21,7 @@ const verifyCallback = async (identifier, password, done) => {
       });
     }
 
-    const passwordMatches = await bcryptjs.compare(password, user.password);
+    const passwordMatches = await bcrypt.compare(password, user.password);
 
     if (!passwordMatches) {
       return done(null, false, {
