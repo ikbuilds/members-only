@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { getLandingPage } from "../controller/indexController.js";
 
-const router = Router();
+const indexRouter = Router();
 
-router.get("/", (req, res) => {
-  res.send("<h1>Welcome to Murmur!</h1>");
-});
+indexRouter.get("/", getLandingPage);
 
-export default router;
+export default indexRouter;
