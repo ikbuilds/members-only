@@ -10,6 +10,8 @@ import errorHandler from "./middleware/error.js";
 import sessionMiddleware from "./config/sessionMiddleware.js";
 
 import indexRouter from "./routes/indexRouter.js";
+import authRouter from "./routes/authRouter.js";
+import messagesRouter from "./routes/messagesRouter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,6 +32,8 @@ app.use(localsMiddleware);
 
 // Routes
 app.use("/", indexRouter);
+app.use("/auth", authRouter);
+app.use("/messages", messagesRouter);
 
 app.use(errorHandler);
 
