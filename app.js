@@ -6,12 +6,14 @@ import { fileURLToPath } from "url";
 import { join, dirname } from "path";
 import passport from "./config/passport.js";
 import localsMiddleware from "./middleware/locals.js";
+import methodOverride from "method-override";
 import errorHandler from "./middleware/error.js";
 import sessionMiddleware from "./config/sessionMiddleware.js";
 
 import indexRouter from "./routes/indexRouter.js";
 import authRouter from "./routes/authRouter.js";
 import messagesRouter from "./routes/messagesRouter.js";
+import membershipRouter from "./routes/membershipRouter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,6 +25,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(join(__dirname, "public")));
+app.use(methodOverride("_method"));
 
 app.use(cors());
 app.use(sessionMiddleware);
@@ -34,6 +37,7 @@ app.use(localsMiddleware);
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/messages", messagesRouter);
+app.use("/membership", membershipRouter);
 
 app.use(errorHandler);
 
