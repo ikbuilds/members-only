@@ -3,6 +3,7 @@ import {
   createMessage,
   deleteAllMessages,
   deleteMessage,
+  getMessageForm,
   getMessagesPage,
 } from "../controller/messagesController.js";
 import {
@@ -17,6 +18,7 @@ const messagesRouter = Router();
 messagesRouter.use(requireAuth);
 
 messagesRouter.get("/", searchValidator, getMessagesPage);
+messagesRouter.get("/new", getMessageForm);
 messagesRouter.post("/new", createMessageValidator, createMessage);
 messagesRouter.delete("/", requireAdmin, deleteAllMessages);
 messagesRouter.delete(

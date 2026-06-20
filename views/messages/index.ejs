@@ -1,0 +1,78 @@
+<%- include("../partials/header") %>
+
+<main class="min-h-screen bg-surface text-on-surface">
+
+  <!-- SEARCH -->
+  <section class="max-w-2xl mx-auto px-5 pt-6">
+    <form action="/messages" method="GET" class="flex gap-3">
+
+      <input type="search" name="q" placeholder="Search messages..." value="<%= q || ''%>" class="flex-1 px-4 py-3 rounded-xl bg-surface-container border border-outline text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary" />
+
+      <button type="submit" class="px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface-variant hover:text-on-surface transition">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+
+    </form>
+  </section>
+
+  <!-- FEED -->
+  <section class="max-w-2xl mx-auto px-5 py-6 space-y-5">
+
+    <% if (messages && messages.length > 0) { %>
+
+    <% messages.forEach(({title, content, updatedAt, author, id}, index) => { %>
+    <%- include("../partials/message-card", {title, content, updatedAt, author, index, id})%>
+    <% }) %>
+
+    <% } else { %>
+
+    <!-- EMPTY STATE -->
+    <% const isSearch = q && q.trim().length > 0 %>
+
+    <div class="py-16 flex justify-center items-center">
+
+      <div class="bg-surface-container p-10 text-center space-y-5 rounded-4xl">
+
+        <div class="w-14 h-14 rounded-full bg-primary-container inline-flex justify-center items-center text-primary">
+          <span class="material-symbols-outlined text-3xl">
+            forum
+          </span>
+        </div>
+
+        <div>
+          <% if (isSearch) { %>
+
+          <h2 class="text-xl font-semibold mb-2">
+            No results found
+          </h2>
+
+          <p class="text-on-surface-variant max-w-sm mx-auto">
+            No messages match "<%= q %>". Try a different keyword.
+          </p>
+
+          <% } else { %>
+
+          <h2 class="text-xl font-semibold mb-2">
+            No messages yet
+          </h2>
+
+          <p class="text-on-surface-variant max-w-sm mx-auto">
+            Be the first to start a conversation. Share something interesting with the community.
+          </p>
+
+          <% } %>
+        </div>
+
+      </div>
+
+    </div>
+    <% } %>
+
+  </section>
+
+  <!-- FAB -->
+  <a href="/messages/new" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-primary text-on-primary shadow-lg flex items-center justify-center hover:scale-105 transition">
+    <span class="material-symbols-outlined">add</span>
+  </a>
+
+</main>
