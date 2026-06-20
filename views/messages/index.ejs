@@ -76,3 +76,43 @@
   </a>
 
 </main>
+
+
+<!-- DELETE MODAL -->
+
+<dialog id="delete-dialog" class="w-full max-w-md rounded-3xl p-0 bg-surface-container border border-outline shadow-xl">
+
+  <div class="p-6">
+
+    <!-- TITLE -->
+    <h2 class="text-xl font-heading font-bold text-on-surface">
+      Delete Message?
+    </h2>
+
+    <!-- WARNING -->
+    <p class="mt-3 text-on-surface-variant text-sm leading-relaxed">
+      This action cannot be undone. The message will be permanently removed.
+    </p>
+
+    <p class="mt-2 text-error text-sm font-medium">
+      Proceed only if you are sure.
+    </p>
+
+    <!-- ACTIONS -->
+    <div class="mt-6 flex items-center justify-end gap-3">
+
+      <button type="button" id="cancel-delete" class="px-4 py-2 rounded-xl bg-surface-container-high text-on-surface-variant hover:text-on-surface transition">
+        Cancel
+      </button>
+
+      <form id="delete-form" method="POST">
+        <button type="submit" class="px-4 py-2 rounded-xl bg-error-container text-on-error-container border border-error hover:opacity-90 transition">
+          Delete
+        </button>
+      </form>
+
+    </div>
+
+  </div>
+
+</dialog>
