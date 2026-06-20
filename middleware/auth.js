@@ -1,5 +1,5 @@
 const requireAdmin = (req, res, next) => {
-  if (!req.user?.isAdmin) {
+  if (req.user.role !== "ADMIN") {
     req.session.error = "Must be an admin to perform this action.";
 
     return req.session.save((err) => {
