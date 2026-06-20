@@ -1,40 +1,44 @@
 {
-    "name": "controllers",
-    "version": "1.0.0",
-    "main": "app.js",
-    "scripts": {
-        "dev": "concurrently --names \"server,tailwind,browser\" \"npm run dev:server\" \"npm run dev:tailwind\" \"npm run dev:browser\"",
-        "dev:server": "nodemon server.js",
-        "dev:tailwind": "tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
-        "dev:browser": "browser-sync start --proxy http://localhost:3000 --port 4000 --files \"public/**/*\" \"views/**/*.ejs\""
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "description": "",
-    "dependencies": {
-        "@prisma/adapter-pg": "^7.8.0",
-        "@prisma/client": "^7.8.0",
-        "bcryptjs": "^3.0.3",
-        "connect-pg-simple": "^10.0.0",
-        "cors": "^2.8.6",
-        "dotenv": "^17.4.2",
-        "ejs": "^6.0.1",
-        "express": "^5.2.1",
-        "express-ejs-layouts": "^2.5.1",
-        "express-session": "^1.19.0",
-        "express-validator": "^7.3.2",
-        "method-override": "^3.0.0",
-        "passport": "^0.7.0",
-        "passport-local": "^1.0.0",
-        "tailwindcss": "^4.3.0"
-    },
-    "devDependencies": {
-        "@tailwindcss/cli": "^4.3.0",
-        "browser-sync": "^3.0.4",
-        "concurrently": "^10.0.3",
-        "nodemon": "^3.1.14",
-        "prisma": "^7.8.0"
-    },
-    "type": "module"
+  "name": "controllers",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "prisma generate && prisma migrate deploy",
+    "postinstall": "prisma generate",
+    "db:deploy": "prisma migrate deploy",
+    "dev": "concurrently --names \"server,tailwind,browser\" \"npm run dev:server\" \"npm run dev:tailwind\" \"npm run dev:browser\"",
+    "dev:server": "nodemon server.js",
+    "dev:tailwind": "tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
+    "dev:browser": "browser-sync start --proxy http://localhost:3000 --port 4000 --files \"public/**/*\" \"views/**/*.ejs\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "bcryptjs": "^3.0.3",
+    "connect-pg-simple": "^10.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "method-override": "^3.0.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "browser-sync": "^3.0.4",
+    "concurrently": "^10.0.3",
+    "nodemon": "^3.1.14",
+    "prisma": "^7.8.0"
+  },
+  "type": "module"
 }
