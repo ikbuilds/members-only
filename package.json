@@ -6,7 +6,7 @@
         "dev": "concurrently --names \"server,tailwind,browser\" \"npm run dev:server\" \"npm run dev:tailwind\" \"npm run dev:browser\"",
         "dev:server": "nodemon server.js",
         "dev:tailwind": "tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
-        "dev:browser": "browser-sync start --proxy http://localhost:3000 --port 4000 --files \"public/**/*\" --no-open"
+        "dev:browser": "browser-sync start --proxy http://localhost:3000 --port 4000 --files \"public/**/*\" \"views/**/*.ejs\""
     },
     "keywords": [],
     "author": "",
@@ -24,6 +24,7 @@
         "express-ejs-layouts": "^2.5.1",
         "express-session": "^1.19.0",
         "express-validator": "^7.3.2",
+        "method-override": "^3.0.0",
         "passport": "^0.7.0",
         "passport-local": "^1.0.0",
         "tailwindcss": "^4.3.0"

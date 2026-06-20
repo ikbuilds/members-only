@@ -108,10 +108,25 @@ const createMessageValidator = [
     .withMessage(messages.betweenErr("Content", 5, 500)),
 ];
 
+const membershipCodeValidator = [
+  body("code")
+    .trim()
+    .notEmpty()
+    .withMessage(messages.requiredErr("Invitation code"))
+    .bail()
+    .custom((value) => {
+      if (value !== process.env.MEMBER_CODE) {
+        throw new Error("Invalid invitation code");
+      }
+      return true;
+    }),
+];
+
 export {
   signupValidator,
   loginValidator,
   searchValidator,
   deleteMessageValidator,
   createMessageValidator,
+  membershipCodeValidator,
 };
