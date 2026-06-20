@@ -1,0 +1,115 @@
+<main class="min-h-screen flex items-center justify-center px-5 py-16 bg-surface">
+
+  <!-- Back Home -->
+  <%- include("../partials/auth-back-link")%>
+
+  <section class="w-full max-w-md bg-surface-container border border-outline rounded-3xl p-8">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-headline-sm font-heading font-extrabold text-on-surface">
+        Create account
+      </h1>
+
+      <p class="mt-2 text-body-md text-on-surface-variant">
+        Join Murmur and start participating in discussions
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form action="/auth/signup" method="POST" class="space-y-5">
+
+      <!-- First Name -->
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          First name
+        </label>
+
+        <input type="text" name="firstName" value="<%= data?.firstName || '' %>" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+
+        <% if (errors?.firstName) { %>
+        <p class="mt-2 text-label-sm text-error"><%= errors.firstName.msg %></p>
+        <% } %>
+      </div>
+
+      <!-- Last Name -->
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          Last name
+        </label>
+
+        <input type="text" name="lastName" value="<%= data?.lastName || '' %>" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+
+        <% if (errors?.lastName) { %>
+        <p class="mt-2 text-label-sm text-error"><%= errors.lastName.msg %></p>
+        <% } %>
+      </div>
+
+      <!-- Username -->
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          Username
+        </label>
+
+        <input type="text" name="username" value="<%= data?.username || '' %>" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+
+        <% if (errors?.username) { %>
+        <p class="mt-2 text-label-sm text-error"><%= errors.username.msg %></p>
+        <% } %>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          Email
+        </label>
+
+        <input type="email" name="email" value="<%= data?.email || '' %>" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+
+        <% if (errors?.email) { %>
+        <p class="mt-2 text-label-sm text-error"><%= errors.email.msg %></p>
+        <% } %>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          Password
+        </label>
+
+        <input type="password" name="password" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+
+        <% if (errors?.password) { %>
+        <p class="mt-2 text-label-sm text-error"><%= errors.password.msg %></p>
+        <% } %>
+      </div>
+
+      <!-- Confirm -->
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          Confirm password
+        </label>
+
+        <input type="password" name="confirmPassword" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+
+        <% if (errors?.confirmPassword) { %>
+        <p class="mt-2 text-label-sm text-error"><%= errors.confirmPassword.msg %></p>
+        <% } %>
+      </div>
+
+      <button type="submit" class="w-full py-3 rounded-xl bg-primary text-on-primary font-semibold hover:opacity-90 transition">
+        Create account
+      </button>
+
+    </form>
+
+    <!-- Footer -->
+    <p class="text-center text-sm text-on-surface-variant mt-6">
+      Already have an account?
+      <a href="/auth/login" class="text-primary font-medium">
+        Sign in
+      </a>
+    </p>
+
+  </section>
+</main>

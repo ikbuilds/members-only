@@ -1,0 +1,60 @@
+<main class="min-h-screen flex items-center justify-center px-5 py-16 bg-surface">
+
+  <!-- Back Home -->
+  <%- include("../partials/auth-back-link")%>
+
+  <section class="w-full max-w-md bg-surface-container border border-outline rounded-3xl p-8">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-headline-sm font-heading font-extrabold text-on-surface">
+        Welcome back
+      </h1>
+
+      <p class="mt-2 text-body-md text-on-surface-variant">
+        Sign in to continue your conversations
+      </p>
+    </div>
+
+    <!-- Error -->
+    <% if (credentialsErr) { %>
+    <div class="mb-6 p-4 rounded-xl bg-error-container text-on-error-container text-sm border border-error">
+      <%= credentialsErr %>
+    </div>
+    <% } %>
+
+    <!-- Form -->
+    <form action="/auth/login" method="POST" class="space-y-5">
+
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          Username or email
+        </label>
+
+        <input type="text" name="identifier" value="<%= data?.identifier || '' %>" placeholder="you@example.com or john_doe" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+      </div>
+
+      <div>
+        <label class="block text-label-lg mb-2 text-on-surface-variant">
+          Password
+        </label>
+
+        <input type="password" name="password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface focus:outline-none focus:border-primary" />
+      </div>
+
+      <button type="submit" class="w-full py-3 rounded-xl bg-primary text-on-primary font-semibold hover:opacity-90 transition">
+        Sign in
+      </button>
+
+    </form>
+
+    <!-- Footer -->
+    <p class="text-center text-sm text-on-surface-variant mt-6">
+      Don’t have an account?
+      <a href="/auth/signup" class="text-primary font-medium">
+        Create one
+      </a>
+    </p>
+
+  </section>
+</main>
