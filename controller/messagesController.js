@@ -41,9 +41,25 @@ const getMessagesPage = async (req, res, next) => {
     orderBy: {
       updatedAt: "desc",
     },
+    include: {
+      author: true,
+    },
   });
 
-  res.render("messages", { title: "Murmur | Messages", messages });
+  res.render("messages/index", {
+    title: "Murmur | Messages",
+    messages,
+    q: q || null,
+  });
+};
+
+// GET MESSAGE FORM
+const getMessageForm = (req, res) => {
+  res.render("messages/create", {
+    title: "Murmur | Create Message",
+    data: null,
+    errors: null,
+  });
 };
 
 // CREATE MESSAGE
@@ -51,7 +67,7 @@ const createMessage = async (req, res) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    return res.render("createMessage", {
+    return res.render("messages/create", {
       title: "Murmur | Create Message",
       data: req.body,
       errors: errors.mapped(),
@@ -124,4 +140,10 @@ const deleteAllMessages = async (req, res, next) => {
   });
 };
 
-export { getMessagesPage, deleteMessage, deleteAllMessages, createMessage };
+export {
+  getMessagesPage,
+  deleteMessage,
+  deleteAllMessages,
+  getMessageForm,
+  createMessage,
+};
