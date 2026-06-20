@@ -14,7 +14,7 @@
         <% if (author?.role !== "GUEST") { %>
 
         <p class="font-semibold text-on-surface">
-          <%= author?.username || "Anonymous" %>
+          <%= currentUser.role === "GUEST" ? "Anonymous" :  author?.username %>
         </p>
 
         <p class="text-label-sm text-on-surface-variant">
@@ -39,10 +39,8 @@
     <!-- DELETE (ADMIN ONLY) -->
     <% if (currentUser?.role === "ADMIN") { %>
     <form action="/messages/<%= id %>?_method=DELETE" method="POST">
-      <button type="submit" aria-label="Delete message" class="text-on-surface-variant hover:text-error transition">
-        <span class="material-symbols-outlined" aria-hidden="true">
-          delete
-        </span>
+      <button type="button" onclick="openDeleteDialog('<%= id %>')" class="text-on-surface-variant hover:text-error transition">
+        <span class="material-symbols-outlined">delete</span>
       </button>
     </form>
     <% } %>
