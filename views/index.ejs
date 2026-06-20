@@ -1,0 +1,151 @@
+<%- include("partials/header")%>
+
+<main>
+
+  <%# HERO %>
+  <section aria-labelledby="hero-heading" class="px-5 py-24">
+    <div class="max-w-6xl mx-auto text-center">
+
+      <p class="inline-block px-4 py-2 rounded-full bg-primary-container text-on-primary-container text-sm font-medium mb-6 animate-fade-up-blur">
+        Exclusive Community Access
+      </p>
+
+      <h1 id="hero-heading" class="text-5xl md:text-6xl font-heading font-black mb-6 animate-fade-up-blur">
+        Join the conversation.
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-on-surface-variant text-lg mb-10 animate-fade-up-blur">
+        Discover meaningful discussions, connect with members, and unlock exclusive content.
+      </p>
+
+      <nav aria-label="Primary call to action" class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up-blur">
+        <a href="/auth/signup" class="px-6 py-3 rounded-full bg-primary text-on-primary font-semibold">
+          Become a Member
+        </a>
+
+        <a href="/messages" class="px-6 py-3 rounded-full border border-outline text-on-surface">
+          Browse Messages
+        </a>
+      </nav>
+
+    </div>
+  </section>
+
+  <%# FEATURES %>
+  <section aria-labelledby="features-heading" class="px-5 py-20 bg-surface-container">
+    <div class="max-w-6xl mx-auto">
+
+      <header class="text-center mb-14">
+        <h2 id="features-heading" class="text-4xl font-heading font-bold mb-4">
+          Why Murmur Exists
+        </h2>
+
+        <p class="text-on-surface-variant max-w-xl mx-auto">
+          A focused space designed for meaningful, member-driven conversations.
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-3" role="list">
+
+        <article class="p-8 rounded-4xl bg-surface-container-high" role="listitem">
+          <h3 class="text-xl font-semibold mb-3">Exclusive Posts</h3>
+          <p class="text-on-surface-variant">
+            Content available only to verified members.
+          </p>
+        </article>
+
+        <article class="p-8 rounded-4xl bg-surface-container-high" role="listitem">
+          <h3 class="text-xl font-semibold mb-3">Focused Discussion</h3>
+          <p class="text-on-surface-variant">
+            Conversations without noise or distractions.
+          </p>
+        </article>
+
+        <article class="p-8 rounded-4xl bg-surface-container-high" role="listitem">
+          <h3 class="text-xl font-semibold mb-3">Trusted Community</h3>
+          <p class="text-on-surface-variant">
+            Built around identity, accountability, and membership.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <%# TESTIMONIALS %>
+  <section aria-labelledby="testimonials-heading" class="px-5 py-20">
+    <div class="max-w-6xl mx-auto">
+
+      <header class="text-center mb-14">
+        <h2 id="testimonials-heading" class="text-4xl font-heading font-bold mb-4">
+          What Members Are Saying
+        </h2>
+
+        <p class="text-on-surface-variant">
+          Real experiences from the community.
+        </p>
+      </header>
+
+      <ul class="grid gap-6 md:grid-cols-3">
+
+        <% const testimonials = (messages && messages.length >= 3) ? messages : [
+          { content: "The discussions here are thoughtful and genuinely helpful." },
+          { content: "One of the few places online where people actually listen." },
+          { content: "Joining gave me a space to actually share my ideas." }
+        ]; %>
+
+        <% testimonials.forEach(({content}) => { %>
+        <li>
+          <article class="p-8 rounded-4xl bg-surface-container border border-outline">
+
+            <header class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined" aria-hidden="true">person</span>
+              </div>
+
+              <p class="text-sm text-on-surface-variant">
+                Anonymous Member
+              </p>
+            </header>
+
+            <blockquote class="text-on-surface-variant italic mb-6">
+              <p>“<%= content %>”</p>
+            </blockquote>
+
+            <footer class="text-xs text-on-surface-variant opacity-70">
+              <time datetime="2026">Member since 2026</time>
+            </footer>
+
+          </article>
+        </li>
+        <% }) %>
+
+      </ul>
+    </div>
+  </section>
+
+  <%# CTA %>
+  <section aria-labelledby="cta-heading" class="px-5 py-24">
+    <div class="max-w-4xl mx-auto text-center rounded-[2rem] bg-primary-container p-12">
+
+      <h2 id="cta-heading" class="text-4xl font-heading font-black mb-4">
+        Ready to join?
+      </h2>
+
+      <p class="text-on-primary-container mb-8 max-w-xl mx-auto">
+        Become part of a focused community built around meaningful conversation.
+      </p>
+
+      <a href="/auth/signup" class="inline-block px-8 py-4 rounded-full bg-primary text-on-primary font-semibold">
+        Create your account
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<%# FOOTER %>
+<footer class="border-t border-outline px-5 py-8 text-center text-sm text-on-surface-variant">
+  <p>© 2026 Murmur. All rights reserved.</p>
+</footer>

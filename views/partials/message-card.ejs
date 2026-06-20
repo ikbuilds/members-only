@@ -1,0 +1,78 @@
+<article class="bg-surface-container rounded-3xl p-5 hover:bg-surface-container-high transition animate-fade-up-blur" style="animation-delay: <%= index * 80 %>ms; animation-fill-mode: both;">
+
+  <!-- HEADER -->
+  <header class="flex items-center justify-between mb-4">
+
+    <div class="flex items-center gap-3">
+
+      <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+        <span class="material-symbols-outlined" aria-hidden="true">person</span>
+      </div>
+
+      <div>
+
+        <% if (author?.role !== "GUEST") { %>
+
+        <p class="font-semibold text-on-surface">
+          <%= author?.username || "Anonymous" %>
+        </p>
+
+        <p class="text-label-sm text-on-surface-variant">
+          <%= author?.role
+              ? author.role.charAt(0).toUpperCase() + author.role.slice(1).toLowerCase()
+              : "Guest"
+            %>
+        </p>
+
+        <% } else { %>
+
+        <p class="font-semibold text-on-surface-variant">
+          Anonymous
+        </p>
+
+        <% } %>
+
+      </div>
+
+    </div>
+
+    <!-- DELETE (ADMIN ONLY) -->
+    <% if (currentUser?.role === "ADMIN") { %>
+    <form action="/messages/<%= id %>?_method=DELETE" method="POST">
+      <button type="submit" aria-label="Delete message" class="text-on-surface-variant hover:text-error transition">
+        <span class="material-symbols-outlined" aria-hidden="true">
+          delete
+        </span>
+      </button>
+    </form>
+    <% } %>
+
+  </header>
+
+  <!-- BODY -->
+  <section class="space-y-2">
+    <h2 class="text-title-lg font-heading font-bold text-on-surface">
+      <%= title %>
+    </h2>
+
+    <p class="text-body-md text-on-surface-variant leading-relaxed">
+      <%= content %>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-5 text-label-sm text-on-surface-variant">
+
+    <% if (currentUser?.role === "ADMIN" || currentUser?.role === "MEMBER") { %>
+    <time datetime="<%= updatedAt.toISOString() %>">
+      <%= new Date(updatedAt).toLocaleString() %>
+    </time>
+    <% } else { %>
+    <a href="/membership/join" class="text-label-sm text-primary">
+      Members-only • Become a member to view details
+    </a>
+    <% } %>
+
+  </footer>
+
+</article>

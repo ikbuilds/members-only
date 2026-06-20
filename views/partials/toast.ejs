@@ -1,0 +1,53 @@
+<% if (success || error) { %>
+
+<div id="toast" class="fixed top-6 right-6 z-50 translate-x-full opacity-0 transition-all duration-300">
+
+  <div class="
+    px-4 py-3 rounded-xl border shadow-lg flex items-center gap-3
+    <%= success ? 'bg-primary-container text-on-primary-container border-primary' : '' %>
+    <%= error ? 'bg-error-container text-on-error-container border-error' : '' %>
+  ">
+
+    <span class="material-symbols-outlined">
+      <%= success ? 'check_circle' : 'error' %>
+    </span>
+
+    <p class="text-sm font-medium">
+      <%= success || error %>
+    </p>
+
+    <button id="toast-close" class="ml-2 opacity-70 hover:opacity-100" aria-label="Close notification">
+      <span class="material-symbols-outlined text-base">close</span>
+    </button>
+
+  </div>
+</div>
+
+<script>
+  const toast = document.getElementById("toast");
+  const closeBtn = document.getElementById("toast-close");
+
+  // slide in
+  requestAnimationFrame(() => {
+    toast.classList.remove("translate-x-full", "opacity-0");
+  });
+
+  function hideToast() {
+    toast.classList.add("translate-x-full", "opacity-0");
+
+    setTimeout(() => {
+      toast.remove();
+    }, 300);
+  }
+
+  // auto dismiss after 5s
+  const timeout = setTimeout(hideToast, 5000);
+
+  // manual dismiss
+  closeBtn.addEventListener("click", () => {
+    clearTimeout(timeout);
+    hideToast();
+  });
+</script>
+
+<% } %>
