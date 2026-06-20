@@ -3,12 +3,21 @@ import bcrypt from "bcryptjs";
 import prisma from "../config/prisma.js";
 import passport from "../config/passport.js";
 
+// SIGNUP PAGE
+const getSignup = (req, res) => {
+  res.render("auth/signup", {
+    title: "Murmur | Sign up",
+    data: null,
+    errors: null,
+  });
+};
+
 // SIGNUP
 const signup = async (req, res, next) => {
   const errors = validationResult(req);
 
-  if (!errors.isEmpty) {
-    return res.render("signup", {
+  if (!errors.isEmpty()) {
+    return res.render("auth/signup", {
       title: " | Signup",
       data: req.body,
       errors: errors.mapped(),
@@ -24,7 +33,7 @@ const signup = async (req, res, next) => {
   });
 
   if (existingUser) {
-    return res.render("signup", {
+    return res.render("auth/signup", {
       title: " | Signup",
       data: req.body,
       errors: {},
@@ -53,7 +62,17 @@ const signup = async (req, res, next) => {
   });
 };
 
-// SIGNIN
+// LOGIN PAGE
+const getLogin = (req, res) => {
+  res.render("auth/login", {
+    title: "Murmur | Login",
+    data: null,
+    errors: null,
+    credentialsErr: null,
+  });
+};
+
+// LOGIN
 const login = async (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) return next(err);
@@ -61,8 +80,8 @@ const login = async (req, res, next) => {
     const errors = validationResult(req);
 
     if (!user || !errors.isEmpty()) {
-      return res.render("login", {
-        title: " | Login",
+      return res.render("auth/login", {
+        title: "Murmur | Login",
         credentialsErr: info?.message || null,
         data: req.body,
         errors: errors.mapped(),
@@ -92,4 +111,4 @@ const logout = (req, res, next) => {
   });
 };
 
-export { signup, login, logout };
+export { signup, login, logout, getSignup, getLogin };
